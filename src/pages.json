@@ -198,6 +198,24 @@
       }
     },
     {
+      "path": "pages/qr/BizDeviceForm",
+      "type": "page",
+      "layout": "default",
+      "style": {
+        "navigationStyle": "custom",
+        "navigationBarTitleText": "设备二维码管理"
+      }
+    },
+    {
+      "path": "pages/qr/BizDeviceList",
+      "type": "page",
+      "layout": "default",
+      "style": {
+        "navigationBarTitleText": "设备二维码管理",
+        "navigationStyle": "custom"
+      }
+    },
+    {
       "path": "pages/user/people",
       "type": "page",
       "layout": "default",

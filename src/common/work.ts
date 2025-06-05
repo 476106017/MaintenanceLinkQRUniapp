@@ -10,6 +10,12 @@ const icon_prefix = '/static/index/128/'
 export const us = {
   data: [
     {
+      title: 'QR', //标题
+      icon: icon_prefix + 'qingjia1.png', //图标
+      description: '设备二维码管理', //描述
+      routeIndex: 'BizDeviceList', //路由名称
+    },
+    {
       title: 'online',
       icon: icon_prefix + 'qingjia1.png',
       description: 'online',
