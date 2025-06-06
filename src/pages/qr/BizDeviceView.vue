@@ -31,24 +31,37 @@
           <wd-cell :title="get4Label('出货日期')" :value="myFormData.shippedDate" />
           <wd-cell :title="get4Label('出货去向')" :value="myFormData.shippedTo" />
         </wd-cell-group>
-        <view class="image-area" v-if="myFormData.picture">
+        <view class="image-area" v-if="pictureList.length">
           <wd-cell :title="get4Label('设备照片')">
-            <wd-img
-              :width="220"
-              :height="120"
-              :src="getFileAccessHttpUrl(myFormData.picture)"
-              @click="previewImg(getFileAccessHttpUrl(myFormData.picture))"
-            ></wd-img>
+            <view class="img-list">
+              <wd-img
+                v-for="(pic, idx) in pictureList"
+                :key="idx"
+                :width="80"
+                :height="80"
+                :src="getFileAccessHttpUrl(pic)"
+                @click="previewImg(idx)"
+              ></wd-img>
+            </view>
           </wd-cell>
           <ImgPreview
+            ref="imgPreviewRef"
             v-if="imgPreview.show"
             :urls="imgPreview.urls"
             @close="() => (imgPreview.show = false)"
           ></ImgPreview>
         </view>
-        <view class="file-area" v-if="myFormData.drawingPdfUrl">
+        <view class="file-area" v-if="fileList.length">
           <wd-cell title="生产图纸">
-            <view class="link" @click="openFile(getFileAccessHttpUrl(myFormData.drawingPdfUrl))">{{ myFormData.drawingPdfUrl }}</view>
+            <view class="file-list">
+              <view
+                v-for="(file, idx) in fileList"
+                :key="idx"
+                class="link"
+                @click="openFile(getFileAccessHttpUrl(file))"
+                >{{ file }}</view
+              >
+            </view>
           </wd-cell>
         </view>
       </view>
@@ -65,7 +78,7 @@ import { onLoad } from '@dcloudio/uni-app'
 import { http } from '@/utils/http'
 import { useToast } from 'wot-design-uni'
 import { useRouter } from '@/plugin/uni-mini-router'
-import { ref, reactive, computed } from 'vue'
+import { ref, reactive, computed, nextTick } from 'vue'
 import { getFileAccessHttpUrl, downloadFile } from '@/common/uitls'
 
 defineOptions({
@@ -81,10 +94,13 @@ const myFormData = reactive({})
 const navTitle = ref('详情')
 const dataId = ref('')
 const backRouteName = ref('BizDeviceList')
+const pictureList = ref<string[]>([])
+const fileList = ref<string[]>([])
 const imgPreview = ref({
   show: false,
   urls: [] as string[],
 })
+const imgPreviewRef = ref()
 
 const get4Label = computed(() => {
   return (label) => {
@@ -96,6 +112,8 @@ const initData = () => {
   http.get('/qr/bizDevice/queryById', { id: dataId.value }).then((res) => {
     if (res.success) {
       Object.assign(myFormData, { ...res.result })
+      pictureList.value = (res.result.picture || '').split(',').filter((i) => i)
+      fileList.value = (res.result.drawingPdfUrl || '').split(',').filter((i) => i)
     } else {
       toast.error(res?.message || '表单加载失败！')
     }
@@ -118,10 +136,14 @@ const openFile = (url: string) => {
   downloadFile(url)
 }
 
-const previewImg = (url: string) => {
-  if (!url) return
+const previewImg = (index: number) => {
+  if (!pictureList.value.length) return
+  imgPreview.value.urls = pictureList.value.map((item) => getFileAccessHttpUrl(item))
   imgPreview.value.show = true
-  imgPreview.value.urls = [url]
+  nextTick(() => {
+    const cur = imgPreview.value.urls[index]
+    imgPreviewRef.value && imgPreviewRef.value.open(cur)
+  })
 }
 
 onLoad((option) => {
@@ -130,6 +152,16 @@ onLoad((option) => {
 </script>
 
 <style lang="scss" scoped>
+.img-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.file-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
 .footer {
   width: 100%;
   padding: 10px 20px;
