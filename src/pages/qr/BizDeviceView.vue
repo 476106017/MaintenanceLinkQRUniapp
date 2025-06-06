@@ -32,12 +32,14 @@
           <wd-cell :title="get4Label('出货去向')" :value="myFormData.shippedTo" />
         </wd-cell-group>
         <view class="image-area" v-if="myFormData.picture">
-          <wd-img
-            :width="220"
-            :height="120"
-            :src="myFormData.picture"
-            @click="previewImg(myFormData.picture)"
-          ></wd-img>
+          <wd-cell :title="get4Label('设备照片')">
+            <wd-img
+              :width="220"
+              :height="120"
+              :src="getFileAccessHttpUrl(myFormData.picture)"
+              @click="previewImg(getFileAccessHttpUrl(myFormData.picture))"
+            ></wd-img>
+          </wd-cell>
           <ImgPreview
             v-if="imgPreview.show"
             :urls="imgPreview.urls"
@@ -46,7 +48,7 @@
         </view>
         <view class="file-area" v-if="myFormData.drawingPdfUrl">
           <wd-cell title="生产图纸">
-            <view class="link" @click="openFile(myFormData.drawingPdfUrl)">{{ myFormData.drawingPdfUrl }}</view>
+            <view class="link" @click="openFile(getFileAccessHttpUrl(myFormData.drawingPdfUrl))">{{ myFormData.drawingPdfUrl }}</view>
           </wd-cell>
         </view>
       </view>
@@ -64,6 +66,7 @@ import { http } from '@/utils/http'
 import { useToast } from 'wot-design-uni'
 import { useRouter } from '@/plugin/uni-mini-router'
 import { ref, reactive, computed } from 'vue'
+import { getFileAccessHttpUrl, downloadFile } from '@/common/uitls'
 
 defineOptions({
   name: 'BizDeviceView',
@@ -112,7 +115,7 @@ const goLogin = () => {
 
 const openFile = (url: string) => {
   if (!url) return
-  uni.navigateTo({ url })
+  downloadFile(url)
 }
 
 const previewImg = (url: string) => {
