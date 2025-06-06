@@ -9,7 +9,12 @@
 </route>
 
 <template>
-  <PageLayout :navTitle="navTitle" :backRouteName="backRouteName">
+  <PageLayout
+    :navTitle="navTitle"
+    :backRouteName="backRouteName"
+    navLeftText=""
+    :navLeftArrow="false"
+  >
     <template #navRight>
       <view class="u-iconfont u-icon-person color-white" @click="goLogin"></view>
     </template>
