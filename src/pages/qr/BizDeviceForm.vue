@@ -17,18 +17,31 @@ navigationBarTitleText: '设备二维码管理',
           <view class="{ 'mt-14px': 0 == 0 }">
               <wd-input
                   label-width="100px"
-                  v-model="myFormData['deviceNo']"
-                  :label="get4Label('设备编号（唯一）')"
-                  name='deviceNo'
-                  prop='deviceNo'
-                  placeholder="请选择设备编号（唯一）"
+                  v-model="myFormData['no']"
+                  :label="get4Label('设备编号')"
+                  name='no'
+                  prop='no'
+                  placeholder="请选择设备编号"
                   :rules="[
-                                  { required: true, message: '请输入设备编号（唯一）!'},
+                                  { required: true, message: '请输入设备编号!'},
                   ]"
                   clearable
               />
         </view>
           <view class="{ 'mt-14px': 1 == 0 }">
+              <wd-input
+                  label-width="100px"
+                  v-model="myFormData['name']"
+                  :label="get4Label('设备名')"
+                  name='name'
+                  prop='name'
+                  placeholder="请选择设备名"
+                  :rules="[
+                  ]"
+                  clearable
+              />
+        </view>
+          <view class="{ 'mt-14px': 0 == 0 }">
               <wd-input
                   label-width="100px"
                   v-model="myFormData['productionBatch']"
@@ -41,7 +54,7 @@ navigationBarTitleText: '设备二维码管理',
                   clearable
               />
         </view>
-          <view class="{ 'mt-14px': 0 == 0 }">
+          <view class="{ 'mt-14px': 1 == 0 }">
               <DateTime
                   :label="get4Label('生产日期')"
                   labelWidth="100px"
@@ -51,46 +64,50 @@ navigationBarTitleText: '设备二维码管理',
                   v-model="myFormData['productionDate']"
               ></DateTime>
         </view>
-          <view class="{ 'mt-14px': 1 == 0 }">
+          <view class="{ 'mt-14px': 0 == 0 }">
               <wd-input
                   label-width="100px"
                   v-model="myFormData['productionPerson']"
-                  :label="get4Label('生产人员姓名')"
+                  :label="get4Label('生产人员')"
                   name='productionPerson'
                   prop='productionPerson'
-                  placeholder="请选择生产人员姓名"
-                  :rules="[
-                  ]"
-                  clearable
-              />
-        </view>
-          <view class="{ 'mt-14px': 0 == 0 }">
-              <wd-input
-                  label-width="100px"
-                  v-model="myFormData['maintenanceTel']"
-                  :label="get4Label('维保联系电话')"
-                  name='maintenanceTel'
-                  prop='maintenanceTel'
-                  placeholder="请选择维保联系电话"
+                  placeholder="请选择生产人员"
                   :rules="[
                   ]"
                   clearable
               />
         </view>
           <view class="{ 'mt-14px': 1 == 0 }">
-              <wd-input
-                  label-width="100px"
-                  v-model="myFormData['drawingPdfUrl']"
-                  :label="get4Label('生产图纸 PDF 存储路径')"
-                  name='drawingPdfUrl'
-                  prop='drawingPdfUrl'
-                  placeholder="请选择生产图纸 PDF 存储路径"
-                  :rules="[
-                  ]"
-                  clearable
+               <!-- 图片 -->
+            <wd-cell
+                :title="get4Label('设备照片')"
+                title-width="100px"
+             >
+              <online-image
+                  v-model:value="myFormData['picture']"
+                  name='picture'
               />
+            </wd-cell>
         </view>
           <view class="{ 'mt-14px': 0 == 0 }">
+             <wd-cell
+                :title="get4Label('生产图纸')"
+                title-width="100px"
+             >
+           <!-- #ifndef APP-PLUS -->
+           <online-file
+            v-model:value="myFormData['drawingPdfUrl']"
+            name='drawingPdfUrl'
+             ></online-file>
+           <!-- #endif -->
+
+           <!-- #ifdef APP-PLUS -->
+            <online-file-custom
+            v-model:value="myFormData['drawingPdfUrl']"
+            name='drawingPdfUrl'
+            ></online-file-custom>
+           <!-- #endif -->
+            </wd-cell>
         </view>
           <view class="{ 'mt-14px': 1 == 0 }">
               <online-select
@@ -124,6 +141,10 @@ navigationBarTitleText: '设备二维码管理',
                   ]"
                   clearable
               />
+        </view>
+          <view class="{ 'mt-14px': 0 == 0 }">
+        </view>
+          <view class="{ 'mt-14px': 1 == 0 }">
         </view>
           </wd-cell-group>
         </wd-form>

@@ -2,9 +2,14 @@ import { render } from '@/common/renderUtils';
 //列表数据
 export const columns = [
     {
-    title: '设备编号（唯一）',
+    title: '设备编号',
     align:"center",
-    dataIndex: 'deviceNo'
+    dataIndex: 'no'
+   },
+   {
+    title: '设备名',
+    align:"center",
+    dataIndex: 'name'
    },
    {
     title: '生产批次',
@@ -17,24 +22,20 @@ export const columns = [
     dataIndex: 'productionDate'
    },
    {
-    title: '生产人员姓名',
+    title: '生产人员',
     align:"center",
     dataIndex: 'productionPerson'
    },
    {
-    title: '维保联系电话',
+    title: '设备照片',
     align:"center",
-    dataIndex: 'maintenanceTel'
+    dataIndex: 'picture',
+    customRender:render.renderImage,
    },
    {
-    title: '生产图纸 PDF 存储路径',
+    title: '生产图纸',
     align:"center",
-    dataIndex: 'drawingPdfUrl'
-   },
-   {
-    title: '二维码图片 URL',
-    align:"center",
-    dataIndex: 'qrCodeUrl'
+    dataIndex: 'drawingPdfUrl',
    },
    {
     title: '出货状态',
@@ -50,5 +51,15 @@ export const columns = [
     title: '出货去向',
     align:"center",
     dataIndex: 'shippedTo'
+   },
+   {
+    title: '创建时间',
+    align:"center",
+    dataIndex: 'createTime',
+   },
+   {
+    title: '更新时间',
+    align:"center",
+    dataIndex: 'updateTime',
    },
 ];
