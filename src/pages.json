@@ -207,6 +207,15 @@
       }
     },
     {
+      "path": "pages/qr/BizDeviceView",
+      "type": "page",
+      "layout": "default",
+      "style": {
+        "navigationStyle": "custom",
+        "navigationBarTitleText": "设备信息查看"
+      }
+    },
+    {
       "path": "pages/qr/BizDeviceList",
       "type": "page",
       "layout": "default",
