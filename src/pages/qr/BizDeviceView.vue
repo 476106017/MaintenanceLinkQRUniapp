@@ -14,6 +14,7 @@
     :backRouteName="backRouteName"
     navLeftText=""
     :navLeftArrow="false"
+    :navLeftDisabled="true"
   >
     <template #navRight>
       <view class="u-iconfont u-icon-person color-white" @click="goLogin"></view>
@@ -40,6 +41,10 @@
         </view>
       </view>
     </scroll-view>
+    <view class="footer">
+      <view>公司简介：北京国炬公司</view>
+      <view>维保电话：400-100-1000</view>
+    </view>
   </PageLayout>
 </template>
 
@@ -102,4 +107,10 @@ onLoad((option) => {
 </script>
 
 <style lang="scss" scoped>
+.footer {
+  width: 100%;
+  padding: 10px 20px;
+  padding-bottom: calc(constant(safe-area-inset-bottom) + 10px);
+  padding-bottom: calc(env(safe-area-inset-bottom) + 10px);
+}
 </style>
