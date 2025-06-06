@@ -32,7 +32,17 @@
           <wd-cell :title="get4Label('出货去向')" :value="myFormData.shippedTo" />
         </wd-cell-group>
         <view class="image-area" v-if="myFormData.picture">
-          <image :src="myFormData.picture" mode="widthFix" style="width: 100%" />
+          <wd-img
+            :width="220"
+            :height="120"
+            :src="myFormData.picture"
+            @click="previewImg(myFormData.picture)"
+          ></wd-img>
+          <ImgPreview
+            v-if="imgPreview.show"
+            :urls="imgPreview.urls"
+            @close="() => (imgPreview.show = false)"
+          ></ImgPreview>
         </view>
         <view class="file-area" v-if="myFormData.drawingPdfUrl">
           <wd-cell title="生产图纸">
@@ -68,6 +78,10 @@ const myFormData = reactive({})
 const navTitle = ref('详情')
 const dataId = ref('')
 const backRouteName = ref('BizDeviceList')
+const imgPreview = ref({
+  show: false,
+  urls: [] as string[],
+})
 
 const get4Label = computed(() => {
   return (label) => {
@@ -99,6 +113,12 @@ const goLogin = () => {
 const openFile = (url: string) => {
   if (!url) return
   uni.navigateTo({ url })
+}
+
+const previewImg = (url: string) => {
+  if (!url) return
+  imgPreview.value.show = true
+  imgPreview.value.urls = [url]
 }
 
 onLoad((option) => {
