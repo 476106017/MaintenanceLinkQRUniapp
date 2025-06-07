@@ -69,6 +69,7 @@
     <view class="footer">
       <view>北京国炬是一家专注于设备维保与管理的高新技术企业，致力于为客户提供优质的产品及服务。</view>
       <view>维保电话：400-100-1000</view>
+      <view class="about-link" @click="openAbout">关于我们</view>
     </view>
   </PageLayout>
 </template>
@@ -141,6 +142,10 @@ const goLogin = () => {
   router.push({ path: '/pages/login/login' })
 }
 
+const openAbout = () => {
+  router.push({ path: '/pages/about/about' })
+}
+
 const openFile = (url: string) => {
   if (!url) return
   downloadFile(url)
@@ -189,5 +194,10 @@ onLoad((option) => {
   text-align: center;
   padding-bottom: calc(constant(safe-area-inset-bottom) + 10px);
   padding-bottom: calc(env(safe-area-inset-bottom) + 10px);
+}
+.about-link {
+  color: #4e6ef2;
+  text-decoration: underline;
+  margin-top: 4px;
 }
 </style>
