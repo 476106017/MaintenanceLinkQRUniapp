@@ -15,11 +15,10 @@ interface NavigateToOptions {
        "/pages/demo/tree" |
        "/pages/login/login" |
        "/pages/login/loginOauth2" |
-       "/pages/message/message" |
        "/pages/more/more" |
        "/pages/qr/BizDeviceForm" |
        "/pages/qr/BizDeviceList" |
-       "/pages/qr/BizDeviceView" |
+  url: "/pages/qr/BizDeviceList" | "/pages/user/people"
        "/pages/user/people" |
        "/pages/workHome/workHome" |
        "/pages-home/home/home" |

@@ -24,16 +24,10 @@
     "spacing": "3px",
     "list": [
       {
-        "iconPath": "static/tabbar/tabbar-message-2.png",
-        "selectedIconPath": "static/tabbar/tabbar-message.png",
-        "pagePath": "pages/message/message",
-        "text": "消息"
-      },
-      {
-        "iconPath": "static/tabbar/tabbar-home-2.png",
-        "selectedIconPath": "static/tabbar/tabbar-home.png",
-        "pagePath": "pages/index/index",
-        "text": "协作"
+        "iconPath": "static/tabbar/tabbar-demo-2.png",
+        "selectedIconPath": "static/tabbar/tabbar-demo.png",
+        "pagePath": "pages/qr/BizDeviceList",
+        "text": "二维码"
       },
       {
         "iconPath": "static/tabbar/tabbar-user-2.png",
@@ -46,7 +40,7 @@
   "pages": [
     {
       "path": "pages/index/index",
-      "type": "home",
+      "type": "page",
       "layout": "default",
       "style": {
         "navigationStyle": "custom",
@@ -195,7 +189,7 @@
       "style": {
         "navigationBarTitleText": "更多",
         "navigationStyle": "custom",
-        "disableScroll": true,
+      "type": "home",
         "app-plus": {
           "bounce": "none"
         }
