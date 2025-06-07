@@ -224,7 +224,7 @@ const accountLogin = () => {
         })
         appConfig()
         departConfig()
-        router.pushTab({ path: HOME_PAGE })
+        router.replaceAll({ path: HOME_PAGE })
       } else {
         toast.warning(res.message)
       }
@@ -299,7 +299,7 @@ const departConfig = () => {
 const appConfig = () => {
   if (isLocalConfig) {
     toast.success('登录成功!')
-    router.pushTab({ path: HOME_PAGE })
+    router.replaceAll({ path: HOME_PAGE })
   } else {
     http
       .get('/eoa/sysAppConfig/queryAppConfigRoute')
@@ -309,11 +309,11 @@ const appConfig = () => {
           cache(APP_CONFIG, res.result.config, HOME_CONFIG_EXPIRED_TIME)
         }
         toast.success('登录成功!')
-        router.pushTab({ path: HOME_PAGE })
+        router.replaceAll({ path: HOME_PAGE })
       })
       .catch((err) => {
         toast.success('登录成功!')
-        router.pushTab({ path: HOME_PAGE })
+        router.replaceAll({ path: HOME_PAGE })
       })
   }
 }
@@ -338,7 +338,7 @@ const checkToken = () => {
       // 超过2小时过期
       clearUserInfo()
     } else {
-      router.pushTab({ path: HOME_PAGE })
+      router.replaceAll({ path: HOME_PAGE })
     }
   } else {
     clearUserInfo()

@@ -8,7 +8,7 @@ export const X_TENANT_ID = 'X-Tenant-Id'
 export const X_Low_App_ID = 'X-Low-App-ID'
 export const TENANT_LIST = 'tenant_list'
 export const ROUTE_PARAMS = "cacheRouteParams"
-export const HOME_PAGE = "/pages/qr/BizDeviceList"
+export const HOME_PAGE = "/pages/workHome/workHome"
 /**
  * 组件名称前缀
  */

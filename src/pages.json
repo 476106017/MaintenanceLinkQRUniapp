@@ -189,14 +189,14 @@
       "style": {
         "navigationBarTitleText": "更多",
         "navigationStyle": "custom",
-      "type": "home",
+      "type": "page",
         "app-plus": {
           "bounce": "none"
         }
       }
     },
     {
-      "path": "pages/qr/BizDeviceForm",
+      "type": "home",
       "type": "page",
       "layout": "default",
       "style": {
