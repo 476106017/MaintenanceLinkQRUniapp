@@ -60,8 +60,10 @@
     {
       "path": "pages/about/about",
       "type": "page",
+      "layout": "default",
       "style": {
-        "navigationBarTitleText": "关于"
+        "navigationStyle": "custom",
+        "navigationBarTitleText": "关于我们"
       }
     },
     {
@@ -207,21 +209,21 @@
       }
     },
     {
-      "path": "pages/qr/BizDeviceView",
-      "type": "page",
-      "layout": "default",
-      "style": {
-        "navigationStyle": "custom",
-        "navigationBarTitleText": "设备信息查看"
-      }
-    },
-    {
       "path": "pages/qr/BizDeviceList",
       "type": "page",
       "layout": "default",
       "style": {
         "navigationBarTitleText": "设备二维码管理",
         "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/qr/BizDeviceView",
+      "type": "page",
+      "layout": "default",
+      "style": {
+        "navigationStyle": "custom",
+        "navigationBarTitleText": "设备信息查看"
       }
     },
     {

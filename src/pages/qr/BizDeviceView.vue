@@ -22,53 +22,59 @@
     <scroll-view class="scrollArea" scroll-y>
       <view class="form-container">
         <wd-cell-group border>
+          <wd-cell :title="get4Label('制造厂家')" value="武汉鑫宏太电气设备有限公司" />
+          <wd-cell :title="get4Label('维保电话')" value="18372207886" />
           <wd-cell :title="get4Label('设备编号')" :value="myFormData.no" />
-          <wd-cell :title="get4Label('设备名')" :value="myFormData.name" />
-          <wd-cell :title="get4Label('生产批次')" :value="myFormData.productionBatch" />
+          <wd-cell :title="get4Label('设备名称')" :value="myFormData.name" />
           <wd-cell :title="get4Label('生产日期')" :value="myFormData.productionDate" />
           <wd-cell :title="get4Label('生产人员')" :value="myFormData.productionPerson" />
           <wd-cell :title="get4Label('出货状态')" :value="statusText" />
           <wd-cell :title="get4Label('出货日期')" :value="myFormData.shippedDate" />
           <wd-cell :title="get4Label('出货去向')" :value="myFormData.shippedTo" />
-        </wd-cell-group>
-        <view class="image-area" v-if="pictureList.length">
-          <wd-cell :title="get4Label('设备照片')">
-            <view class="img-list">
-              <wd-img
-                v-for="(pic, idx) in pictureList"
-                :key="idx"
-                :width="80"
-                :height="80"
-                :src="getFileAccessHttpUrl(pic)"
-                @click="previewImg(idx)"
-              ></wd-img>
-            </view>
-          </wd-cell>
-          <ImgPreview
-            ref="imgPreviewRef"
-            v-if="imgPreview.show"
-            :urls="imgPreview.urls"
-            @close="() => (imgPreview.show = false)"
-          ></ImgPreview>
-        </view>
-        <view class="file-area" v-if="fileList.length">
-          <wd-cell title="生产图纸">
-            <view class="file-list">
-              <view
-                v-for="(file, idx) in fileList"
-                :key="idx"
-                class="link"
-                @click="openFile(getFileAccessHttpUrl(file))"
+
+          <view class="image-area" v-if="pictureList.length">
+            <wd-cell :title="get4Label('设备照片')">
+              <view class="img-list">
+                <wd-img
+                  v-for="(pic, idx) in pictureList"
+                  :key="idx"
+                  :width="80"
+                  :height="80"
+                  :src="getFileAccessHttpUrl(pic)"
+                  @click="previewImg(idx)"
+                ></wd-img>
+              </view>
+            </wd-cell>
+            <ImgPreview
+              ref="imgPreviewRef"
+              v-if="imgPreview.show"
+              :urls="imgPreview.urls"
+              @close="() => (imgPreview.show = false)"
+            ></ImgPreview>
+          </view>
+          <view class="file-area" v-if="fileList.length">
+            <wd-cell title="生产图纸">
+              <view class="file-list">
+                <view
+                  v-for="(file, idx) in fileList"
+                  :key="idx"
+                  class="link"
+                  @click="openFile(getFileAccessHttpUrl(file))"
                 >{{ formatFileName(file) }}</view
-              >
-            </view>
-          </wd-cell>
-        </view>
+                >
+              </view>
+            </wd-cell>
+          </view>
+        </wd-cell-group>
       </view>
     </scroll-view>
     <view class="footer">
-      <view>北京国炬是一家专注于设备维保与管理的高新技术企业，致力于为客户提供优质的产品及服务。</view>
-      <view>维保电话：400-100-1000</view>
+      <!-- 新增口号 -->
+      <view class="slogan-wrapper">
+        <view class="slogan">
+          服务电力事业，守护用电安全
+        </view>
+      </view>
       <view class="about-link" @click="openAbout">关于我们</view>
     </view>
   </PageLayout>
@@ -182,6 +188,7 @@ onLoad((option) => {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
+  justify-content: flex-end; /* 右对齐 */
 }
 .file-list {
   display: flex;
@@ -200,4 +207,29 @@ onLoad((option) => {
   text-decoration: underline;
   margin-top: 4px;
 }
+.slogan-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 32px;
+}
+
+.slogan {
+  font-size: 22px;
+  font-weight: bold;
+  letter-spacing: 6px;
+  color: #fff;
+  padding: 8px 24px;
+  background: linear-gradient(90deg, #215eff 10%, #27e3ff 100%);
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(33,94,255,0.12), 0 2px 8px rgba(39,227,255,0.15);
+  text-shadow: 0 2px 12px rgba(33,94,255,0.2), 0 4px 18px rgba(0,0,0,0.12);
+  animation: slogan-glow 2.2s ease-in-out infinite alternate;
+}
+
+@keyframes slogan-glow {
+  0%   { box-shadow: 0 4px 24px rgba(33,94,255,0.10), 0 2px 8px rgba(39,227,255,0.09); }
+  100% { box-shadow: 0 4px 40px rgba(33,94,255,0.20), 0 2px 16px rgba(39,227,255,0.22);}
+}
+
+
 </style>

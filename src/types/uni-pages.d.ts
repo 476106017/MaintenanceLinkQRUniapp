@@ -19,6 +19,7 @@ interface NavigateToOptions {
        "/pages/more/more" |
        "/pages/qr/BizDeviceForm" |
        "/pages/qr/BizDeviceList" |
+       "/pages/qr/BizDeviceView" |
        "/pages/user/people" |
        "/pages/workHome/workHome" |
        "/pages-home/home/home" |
