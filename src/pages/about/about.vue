@@ -1,16 +1,15 @@
-<route lang="json5">
+<route lang="json5" type="page">
 {
-layout: 'default',
-style: {
-navigationStyle: 'custom',
-navigationBarTitleText: '关于我们',
-},
-}
-</route>
-
-<template>
-  <PageLayout
-    :navTitle="navTitle"
+  layout: 'default',
+    navigationStyle: 'custom',
+    navigationBarTitleText: '关于我们',
+  <PageLayout navTitle="关于我们">
+    <view class="about-page">
+      <view class="title">关于我们</view>
+      <view class="content">
+        北京国炬是一家专注于设备维保与管理的高新技术企业，致力于提供从生产到售后的一体化解决方案。
+      </view>
+  </PageLayout>
     :backRouteName="backRouteName"
   >
   <view class="about-page" :style="{ marginTop: safeAreaInsets?.top + 'px' }">

@@ -61,6 +61,8 @@
       "path": "pages/about/about",
       "type": "page",
       "layout": "default",
+        "navigationStyle": "custom",
+        "navigationBarTitleText": "关于我们"
       "style": {
         "navigationStyle": "custom",
         "navigationBarTitleText": "关于我们"
