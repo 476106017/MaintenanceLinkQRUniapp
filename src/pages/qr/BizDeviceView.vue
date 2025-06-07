@@ -27,7 +27,7 @@
           <wd-cell :title="get4Label('生产批次')" :value="myFormData.productionBatch" />
           <wd-cell :title="get4Label('生产日期')" :value="myFormData.productionDate" />
           <wd-cell :title="get4Label('生产人员')" :value="myFormData.productionPerson" />
-          <wd-cell :title="get4Label('出货状态')" :value="myFormData.status_dictText" />
+          <wd-cell :title="get4Label('出货状态')" :value="statusText" />
           <wd-cell :title="get4Label('出货日期')" :value="myFormData.shippedDate" />
           <wd-cell :title="get4Label('出货去向')" :value="myFormData.shippedTo" />
         </wd-cell-group>
@@ -79,7 +79,7 @@ import { http } from '@/utils/http'
 import { useToast } from 'wot-design-uni'
 import { useRouter } from '@/plugin/uni-mini-router'
 import { ref, reactive, computed, nextTick } from 'vue'
-import { getFileAccessHttpUrl, downloadFile } from '@/common/uitls'
+import { getFileAccessHttpUrl, downloadFile, filterMultiDictText } from '@/common/uitls'
 
 defineOptions({
   name: 'BizDeviceView',
@@ -96,6 +96,8 @@ const dataId = ref('')
 const backRouteName = ref('BizDeviceList')
 const pictureList = ref<string[]>([])
 const fileList = ref<string[]>([])
+const statusOptions = ref<any[]>([])
+const statusText = ref('')
 const imgPreview = ref({
   show: false,
   urls: [] as string[],
@@ -108,22 +110,30 @@ const get4Label = computed(() => {
   }
 })
 
-const initData = () => {
-  http.get('/qr/bizDevice/queryById', { id: dataId.value }).then((res) => {
-    if (res.success) {
-      Object.assign(myFormData, { ...res.result })
-      pictureList.value = (res.result.picture || '').split(',').filter((i) => i)
-      fileList.value = (res.result.drawingPdfUrl || '').split(',').filter((i) => i)
-    } else {
-      toast.error(res?.message || '表单加载失败！')
-    }
-  })
+const loadStatusDict = async () => {
+  const res: any = await http.get('/sys/dict/getDictItems/qr-status')
+  if (res.success) {
+    statusOptions.value = res.result
+  }
 }
 
-const initForm = (option) => {
+const initData = async () => {
+  const res: any = await http.get('/qr/bizDevice/queryById', { id: dataId.value })
+  if (res.success) {
+    Object.assign(myFormData, { ...res.result })
+    pictureList.value = (res.result.picture || '').split(',').filter((i) => i)
+    fileList.value = (res.result.drawingPdfUrl || '').split(',').filter((i) => i)
+    statusText.value = filterMultiDictText(statusOptions.value, myFormData.status) || res.result.status_dictText || ''
+  } else {
+    toast.error(res?.message || '表单加载失败！')
+  }
+}
+
+const initForm = async (option) => {
+  await loadStatusDict()
   if (option?.dataId) {
     dataId.value = option.dataId
-    initData()
+    await initData()
   }
 }
 
