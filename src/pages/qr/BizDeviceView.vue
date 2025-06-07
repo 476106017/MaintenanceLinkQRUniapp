@@ -59,7 +59,7 @@
                 :key="idx"
                 class="link"
                 @click="openFile(getFileAccessHttpUrl(file))"
-                >{{ file }}</view
+                >{{ formatFileName(file) }}</view
               >
             </view>
           </wd-cell>
@@ -67,7 +67,7 @@
       </view>
     </scroll-view>
     <view class="footer">
-      <view>公司简介：北京国炬公司</view>
+      <view>北京国炬是一家专注于设备维保与管理的高新技术企业，致力于为客户提供优质的产品及服务。</view>
       <view>维保电话：400-100-1000</view>
     </view>
   </PageLayout>
@@ -136,6 +136,17 @@ const openFile = (url: string) => {
   downloadFile(url)
 }
 
+const formatFileName = (path: string) => {
+  if (!path) return ''
+  const name = path.split('/').pop() || path
+  if (name.length > 20) {
+    const extIndex = name.lastIndexOf('.')
+    const ext = extIndex !== -1 ? name.slice(extIndex) : ''
+    return name.slice(0, 15) + '...' + ext
+  }
+  return name
+}
+
 const previewImg = (index: number) => {
   if (!pictureList.value.length) return
   imgPreview.value.urls = pictureList.value.map((item) => getFileAccessHttpUrl(item))
@@ -165,6 +176,7 @@ onLoad((option) => {
 .footer {
   width: 100%;
   padding: 10px 20px;
+  text-align: center;
   padding-bottom: calc(constant(safe-area-inset-bottom) + 10px);
   padding-bottom: calc(env(safe-area-inset-bottom) + 10px);
 }
