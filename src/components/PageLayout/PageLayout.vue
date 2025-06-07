@@ -11,6 +11,7 @@
         :title="navTitle"
         :leftText="navLeftText"
         :leftArrow="navLeftArrow"
+        :leftDisabled="navLeftDisabled"
         :rightText="isMp ? '' : navRightText"
         @clickLeft="handleClickLeft"
         @clickRight="handleClickRight"
@@ -117,6 +118,10 @@ const props = defineProps({
     typeof: Boolean,
     default: true,
   },
+  navLeftDisabled: {
+    type: Boolean,
+    default: false,
+  },
   navRightText: {
     typeof: String,
     default: '',
@@ -143,6 +148,7 @@ const { systemInfo, navHeight } = globalData
 const { statusBarHeight } = systemInfo
 const emit = defineEmits(['navBack', 'navRight', 'navRightMp'])
 const handleClickLeft = () => {
+  if (props.navLeftDisabled) return
   emit('navBack')
   // 只有在页面中才默认返回，弹层中不返回
   if (props.type === 'page') {

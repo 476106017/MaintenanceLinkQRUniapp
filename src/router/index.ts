@@ -17,7 +17,7 @@ setRouteName(routes)
 const router = createRouter({
   routes: [...routes], // 路由表信息
 })
-export const whiteList = ['/pages/login/login','/pages/login/loginOauth2']
+export const whiteList = ['/pages/login/login','/pages/login/loginOauth2','/pages/qr/BizDeviceView','/pages/about/about']
 export const loginPage = '/pages/login/login'
 interface CacheRoute {
   path: string;

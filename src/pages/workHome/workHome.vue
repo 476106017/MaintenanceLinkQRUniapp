@@ -13,7 +13,7 @@
 </route>
 
 <template>
-  <PageLayout navTitle="工作台" backRouteName="index" routeMethod="pushTab">
+  <PageLayout navTitle="工作台" backRouteName="BizDeviceList" routeMethod="pushTab">
     <view
       class="wrap"
       :style="{
