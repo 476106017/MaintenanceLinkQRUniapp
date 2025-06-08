@@ -13,7 +13,7 @@
 </route>
 
 <template>
-  <PageLayout navTitle="更多" backRouteName="BizDeviceList" routeMethod="pushTab">
+  <PageLayout navTitle="更多" backRouteName="index" routeMethod="pushTab">
     <wd-cell-group border clickable style="overflow:auto;">
       <template v-for="(item, index) in routeList" :key="index">
         <wd-cell :title="item.title" is-link @click="goPage(item)">

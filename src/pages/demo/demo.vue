@@ -13,7 +13,7 @@
 </route>
 
 <template>
-  <PageLayout backRouteName="BizDeviceList" navTitle="组件示例" routeMethod="pushTab">
+  <PageLayout backRouteName="index" navTitle="组件示例" routeMethod="pushTab">
     <scroll-view scroll-y>
       <view class="box shadow-warp">
         <div class="content">

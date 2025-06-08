@@ -8,7 +8,7 @@ navigationStyle: 'custom',
 }
 </route>
 <template>
-  <PageLayout navTitle="设备二维码管理" backRouteName="BizDeviceList" routeMethod="pushTab">
+  <PageLayout navTitle="设备二维码管理" backRouteName="index" routeMethod="pushTab">
     <view class="wrap">
       <z-paging
           ref="paging"

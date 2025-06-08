@@ -224,7 +224,7 @@ const accountLogin = () => {
         })
         appConfig()
         departConfig()
-        router.replaceAll({ path: HOME_PAGE })
+        router.pushTab({ path: HOME_PAGE })
       } else {
         toast.warning(res.message)
       }

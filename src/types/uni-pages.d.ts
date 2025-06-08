@@ -15,10 +15,11 @@ interface NavigateToOptions {
        "/pages/demo/tree" |
        "/pages/login/login" |
        "/pages/login/loginOauth2" |
+       "/pages/message/message" |
        "/pages/more/more" |
        "/pages/qr/BizDeviceForm" |
        "/pages/qr/BizDeviceList" |
-  url: "/pages/qr/BizDeviceList" | "/pages/user/people"
+       "/pages/qr/BizDeviceView" |
        "/pages/user/people" |
        "/pages/workHome/workHome" |
        "/pages-home/home/home" |
@@ -46,7 +47,7 @@ interface NavigateToOptions {
 interface RedirectToOptions extends NavigateToOptions {}
 
 interface SwitchTabOptions {
-  url: "/pages/message/message" | "/pages/index/index" | "/pages/user/people"
+  url: "/pages/index/index" | "/pages/user/people"
 }
 
 type ReLaunchOptions = NavigateToOptions | SwitchTabOptions;

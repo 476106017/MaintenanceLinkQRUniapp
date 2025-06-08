@@ -24,10 +24,10 @@
     "spacing": "3px",
     "list": [
       {
-        "iconPath": "static/tabbar/tabbar-demo-2.png",
-        "selectedIconPath": "static/tabbar/tabbar-demo.png",
-        "pagePath": "pages/qr/BizDeviceList",
-        "text": "二维码"
+        "iconPath": "static/tabbar/tabbar-home-2.png",
+        "selectedIconPath": "static/tabbar/tabbar-home.png",
+        "pagePath": "pages/index/index",
+        "text": "功能"
       },
       {
         "iconPath": "static/tabbar/tabbar-user-2.png",
@@ -40,7 +40,7 @@
   "pages": [
     {
       "path": "pages/index/index",
-      "type": "page",
+      "type": "home",
       "layout": "default",
       "style": {
         "navigationStyle": "custom",
@@ -55,8 +55,6 @@
       "path": "pages/about/about",
       "type": "page",
       "layout": "default",
-        "navigationStyle": "custom",
-        "navigationBarTitleText": "关于我们"
       "style": {
         "navigationStyle": "custom",
         "navigationBarTitleText": "关于我们"
@@ -189,14 +187,14 @@
       "style": {
         "navigationBarTitleText": "更多",
         "navigationStyle": "custom",
-      "type": "page",
+        "disableScroll": true,
         "app-plus": {
           "bounce": "none"
         }
       }
     },
     {
-      "type": "home",
+      "path": "pages/qr/BizDeviceForm",
       "type": "page",
       "layout": "default",
       "style": {

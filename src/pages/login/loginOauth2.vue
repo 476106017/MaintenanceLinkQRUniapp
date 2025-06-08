@@ -192,7 +192,7 @@ const goRedirectUrl = () => {
 const appConfig = () => {
   if(isLocalConfig){
     toast.success('登录成功!')
-    router.replaceAll({ path: HOME_PAGE })
+    router.pushTab({ path: HOME_PAGE })
   }else{
     http.get('/eoa/sysAppConfig/queryAppConfigRoute').then((res: any) => {
       if (res.success) {
@@ -202,7 +202,7 @@ const appConfig = () => {
         if (redirectUrl.value) {
           goRedirectUrl()
         } else {
-          router.replaceAll({ path: HOME_PAGE })
+          router.pushTab({ path: HOME_PAGE })
         }
       }
     })
@@ -238,7 +238,7 @@ const sysOAuth2Login = (source) => {
 function toOldAuthLogin() {
   let token = userStore.userInfo.token
   if (token) {
-    router.replaceAll({ path: HOME_PAGE })
+    router.pushTab({ path: HOME_PAGE })
   } else {
     sysOAuth2Login('dingtalk')
   }
