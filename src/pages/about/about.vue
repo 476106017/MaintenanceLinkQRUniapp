@@ -1,3 +1,4 @@
+
 <route lang="json5">
 {
 layout: 'default',
@@ -7,6 +8,8 @@ navigationBarTitleText: '关于我们',
 },
 }
 </route>
+<template>
+
   <PageLayout navTitle="关于我们">
     <view class="about-page">
       <view class="title">关于我们</view>
