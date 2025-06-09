@@ -27,16 +27,10 @@ export default defineUniPages({
     spacing: '3px',
     list: [
       {
-        iconPath: 'static/tabbar/tabbar-message-2.png',
-        selectedIconPath: 'static/tabbar/tabbar-message.png',
-        pagePath: 'pages/message/message',
-        text: '消息',
-      },
-      {
         iconPath: 'static/tabbar/tabbar-home-2.png',
         selectedIconPath: 'static/tabbar/tabbar-home.png',
         pagePath: 'pages/index/index',
-        text: '协作',
+        text: '功能',
       },
 	  // {
 	  //   iconPath: 'static/tabbar/tabbar-workHome-2.png',

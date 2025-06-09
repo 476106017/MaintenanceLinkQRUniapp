@@ -299,7 +299,7 @@ const departConfig = () => {
 const appConfig = () => {
   if (isLocalConfig) {
     toast.success('登录成功!')
-    router.pushTab({ path: HOME_PAGE })
+    router.replaceAll({ path: HOME_PAGE })
   } else {
     http
       .get('/eoa/sysAppConfig/queryAppConfigRoute')
@@ -309,11 +309,11 @@ const appConfig = () => {
           cache(APP_CONFIG, res.result.config, HOME_CONFIG_EXPIRED_TIME)
         }
         toast.success('登录成功!')
-        router.pushTab({ path: HOME_PAGE })
+        router.replaceAll({ path: HOME_PAGE })
       })
       .catch((err) => {
         toast.success('登录成功!')
-        router.pushTab({ path: HOME_PAGE })
+        router.replaceAll({ path: HOME_PAGE })
       })
   }
 }
@@ -338,7 +338,7 @@ const checkToken = () => {
       // 超过2小时过期
       clearUserInfo()
     } else {
-      router.pushTab({ path: HOME_PAGE })
+      router.replaceAll({ path: HOME_PAGE })
     }
   } else {
     clearUserInfo()
@@ -360,10 +360,12 @@ if (isLocalConfig === false) {
 
 .page-container {
   padding: 0 20upx;
-  padding-top: 100upx;
+  padding-top: 120upx;
+  min-height: 100vh;
   position: relative;
   font-size: 15px;
   color: var(--UI-FG-0);
+  background: linear-gradient(180deg, #f0f4ff, #e8f0fe);
   .logo {
     width: 200upx;
     height: 150px;
@@ -384,6 +386,7 @@ if (isLocalConfig === false) {
       background-color: #fff;
       padding: 0 20upx;
       margin-bottom: 30upx;
+      border-radius: 8px;
       box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
       :deep(.wd-text) {
         margin: 0 10upx;

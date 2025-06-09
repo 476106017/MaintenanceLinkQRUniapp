@@ -24,16 +24,10 @@
     "spacing": "3px",
     "list": [
       {
-        "iconPath": "static/tabbar/tabbar-message-2.png",
-        "selectedIconPath": "static/tabbar/tabbar-message.png",
-        "pagePath": "pages/message/message",
-        "text": "消息"
-      },
-      {
         "iconPath": "static/tabbar/tabbar-home-2.png",
         "selectedIconPath": "static/tabbar/tabbar-home.png",
         "pagePath": "pages/index/index",
-        "text": "协作"
+        "text": "功能"
       },
       {
         "iconPath": "static/tabbar/tabbar-user-2.png",
@@ -60,8 +54,10 @@
     {
       "path": "pages/about/about",
       "type": "page",
+      "layout": "default",
       "style": {
-        "navigationBarTitleText": "关于"
+        "navigationStyle": "custom",
+        "navigationBarTitleText": "关于我们"
       }
     },
     {
@@ -213,6 +209,15 @@
       "style": {
         "navigationBarTitleText": "设备二维码管理",
         "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/qr/BizDeviceView",
+      "type": "page",
+      "layout": "default",
+      "style": {
+        "navigationStyle": "custom",
+        "navigationBarTitleText": "设备信息查看"
       }
     },
     {
